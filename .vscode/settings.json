@@ -7,6 +7,9 @@
   },
   "editor.defaultFormatter": "biomejs.biome",
   "cSpell.words": [
-    "Instantiator"
+    "Instantiator",
+    "loadbalancer",
+    "nestjs",
+    "nginx"
   ]
 }
