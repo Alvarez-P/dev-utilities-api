@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+
+echo '🔎 Linting...'
+pnpm exec biome lint --write ./src ||
+(
+  echo '❌ Linting failed'
+  false;
+)
+
+echo '🎨 Formatting...'
+pnpm exec biome format --write ./src ||
+(
+  echo '❌ Formatting failed'
+  false;
+)
+
+git add $(git diff --cached --name-only --diff-filter=ACM)
+
+echo '✅ Linting and Formatting passed'
+
+exit 0
