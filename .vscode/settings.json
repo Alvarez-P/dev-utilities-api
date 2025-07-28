@@ -7,9 +7,12 @@
   },
   "editor.defaultFormatter": "biomejs.biome",
   "cSpell.words": [
+    "adminer",
     "Instantiator",
     "loadbalancer",
     "nestjs",
-    "nginx"
+    "nginx",
+    "postgis",
+    "postgres"
   ]
 }
