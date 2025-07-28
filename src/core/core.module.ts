@@ -2,6 +2,7 @@ import { Global, Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { ConfigEnvService } from './application/services/config.service'
 import { ConfigEnvSchema } from './domain/types/env.interface'
+import { PersistenceProvider } from './infrastructure/persistence/connection.provider'
 
 @Global()
 @Module({
@@ -11,7 +12,7 @@ import { ConfigEnvSchema } from './domain/types/env.interface'
       isGlobal: false
     })
   ],
-  providers: [ConfigEnvService],
+  providers: [ConfigEnvService, PersistenceProvider],
   exports: [ConfigEnvService]
 })
 export class CoreModule {}
