@@ -13,6 +13,7 @@
     "nestjs",
     "nginx",
     "postgis",
-    "postgres"
+    "postgres",
+    "Uncapitalize"
   ]
 }

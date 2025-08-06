@@ -1,16 +1,16 @@
 #!/usr/bin/env sh
 
-echo '🔎 Linting...'
-pnpm exec biome lint --write ./src ||
-(
-  echo '❌ Linting failed'
-  false;
-)
-
 echo '🎨 Formatting...'
 pnpm exec biome format --write ./src ||
 (
   echo '❌ Formatting failed'
+  false;
+)
+
+echo '🔎 Checking code...'
+pnpm exec biome check --write ./src ||
+(
+  echo '❌ Code checking failed'
   false;
 )
 

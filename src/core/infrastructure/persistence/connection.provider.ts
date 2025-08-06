@@ -1,5 +1,6 @@
 import { Injectable, OnModuleInit } from '@nestjs/common'
 import { ConfigEnvService } from 'src/core/application/services/config.service'
+import { TagModel } from 'src/modules/tags/infrastructure/model/tags.model'
 import { DataSource } from 'typeorm'
 
 @Injectable()
@@ -16,19 +17,20 @@ export class PersistenceProvider implements OnModuleInit {
         username: this.configService.get('DB_USER'),
         password: this.configService.get('DB_PASSWORD'),
         database: this.configService.get('DB_NAME'),
-        entities: [],
+        entities: [TagModel],
         synchronize: true
       })
-
       const connection = await dataSource.initialize()
-      return connection
+      this.dataSource = connection
     } catch (error) {
       throw new Error(`Error connecting to database: ${error.message}`)
     }
   }
 
-  async createClient(): Promise<DataSource> {
-    if (!this.dataSource) this.dataSource = await this.onModuleInit()
+  getClient(): DataSource {
+    if (!this.dataSource) {
+      throw new Error('DataSource is not initialized')
+    }
     return this.dataSource
   }
 }
